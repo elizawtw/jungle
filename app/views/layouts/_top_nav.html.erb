@@ -48,6 +48,28 @@
           <% end %>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if current_user %>
+             <a>Hi! <%= current_user.first_name %> <%= current_user.last_name %> </a>
+          <% else %>
+            <%= link_to 'Log In', '/login' %> 
+          <% end %>
+          <%#= yield %>
+        </li>
+
+        <li>    
+        <% if current_user %>
+        <%= link_to "Logout", '/logout' %>
+        <% else %>
+        <%= link_to 'Sign Up', '/signup' %>
+        <% end %>
+        
+        
+        </li>
+
+      </ul>
+
     </div>
   </div>
 </nav>
