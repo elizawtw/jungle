@@ -137,5 +137,18 @@ RSpec.describe User, type: :model do
       expect(@validate).to be_instance_of(User)
       
     end  
+    it 'validates email case insensitive' do
+      @user = User.new
+      @user.first_name = "Mich"
+      @user.last_name = "Boyle"
+      @user.email = "abcdef@xyz.com"
+      @user.password = "12345678"
+      @user.password_confirmation = "12345678"
+      @user.save
+      @validate = User.authenticate_with_credentials(" ABCDef@xyz.COM ", "12345678")
+      expect(@validate).to eq(@user)
+      expect(@validate).to be_instance_of(User)
+      
+    end  
   end  
 end
